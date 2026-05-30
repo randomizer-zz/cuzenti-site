@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Cuzenti LLC</title>
+  <meta name="description" content="Privacy Policy for the Cuzenti mobile card game application." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Tenor+Sans&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #00539B;
+      --blue-dark: #002f5c;
+      --blue-mid: #003f7a;
+      --orange: #F47D30;
+      --white: #FFFFFF;
+      --muted: rgba(255,255,255,0.5);
+      --rule: rgba(255,255,255,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--blue-dark);
+      color: var(--white);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 3rem;
+      background: rgba(0, 47, 92, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-logo {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 10rem 2rem 5rem;
+      text-align: center;
+      background: radial-gradient(ellipse at 50% 0%, #0061b5 0%, #00539B 40%, #002f5c 100%);
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+    }
+
+    .page-header::after {
+      content: '';
+      position: absolute;
+      inset: 2.5rem;
+      border: 1px solid var(--rule);
+      pointer-events: none;
+    }
+
+    .corner { position: absolute; width: 14px; height: 14px; }
+    .corner--tl { top: 2.5rem; left: 2.5rem; border-top: 2px solid var(--orange); border-left: 2px solid var(--orange); }
+    .corner--tr { top: 2.5rem; right: 2.5rem; border-top: 2px solid var(--orange); border-right: 2px solid var(--orange); }
+    .corner--bl { bottom: 2.5rem; left: 2.5rem; border-bottom: 2px solid var(--orange); border-left: 2px solid var(--orange); }
+    .corner--br { bottom: 2.5rem; right: 2.5rem; border-bottom: 2px solid var(--orange); border-right: 2px solid var(--orange); }
+
+    .page-eyebrow {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1.5rem;
+    }
+
+    .page-title {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .page-meta {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* MAIN LAYOUT */
+    .main-wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 5rem 2rem 7rem;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    /* SIDEBAR */
+    aside {
+      position: sticky;
+      top: 6rem;
+    }
+
+    .toc-label {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1.2rem;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .toc-list a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 300;
+      font-style: italic;
+      display: block;
+      padding: 0.35rem 0.75rem;
+      border-left: 1px solid var(--rule);
+      transition: color 0.2s, border-color 0.2s;
+      line-height: 1.4;
+    }
+
+    .toc-list a:hover {
+      color: var(--white);
+      border-left-color: var(--orange);
+    }
+
+    .toc-divider {
+      height: 1px;
+      background: var(--rule);
+      margin: 1.5rem 0;
+    }
+
+    .toc-meta {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 2;
+    }
+
+    .toc-meta strong {
+      color: rgba(255,255,255,0.7);
+      display: block;
+      margin-bottom: 0.1rem;
+    }
+
+    /* CONTENT */
+    .content { min-width: 0; }
+
+    .content > section {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 6rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    .content > section:nth-child(1)  { animation-delay: 0.05s; }
+    .content > section:nth-child(2)  { animation-delay: 0.10s; }
+    .content > section:nth-child(3)  { animation-delay: 0.15s; }
+    .content > section:nth-child(4)  { animation-delay: 0.20s; }
+    .content > section:nth-child(5)  { animation-delay: 0.25s; }
+    .content > section:nth-child(6)  { animation-delay: 0.30s; }
+    .content > section:nth-child(7)  { animation-delay: 0.35s; }
+    .content > section:nth-child(8)  { animation-delay: 0.40s; }
+    .content > section:nth-child(9)  { animation-delay: 0.45s; }
+    .content > section:nth-child(10) { animation-delay: 0.50s; }
+    .content > section:nth-child(11) { animation-delay: 0.55s; }
+    .content > section:nth-child(12) { animation-delay: 0.60s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .intro-text {
+      font-size: 1.1rem;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.8;
+      padding-bottom: 2.5rem;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    h2 {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1rem;
+    }
+
+    .section-heading {
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      font-weight: 300;
+      letter-spacing: 0.03em;
+      margin-bottom: 1.2rem;
+      line-height: 1.3;
+    }
+
+    p {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 0.9rem;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0.5rem 0 1rem;
+      padding: 0;
+    }
+
+    ul li {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.65);
+      padding: 0.2rem 0 0.2rem 1.5rem;
+      position: relative;
+    }
+
+    ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--orange);
+      font-size: 0.8rem;
+    }
+
+    strong.label {
+      color: rgba(255,255,255,0.85);
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    .callout {
+      border: 1px solid var(--rule);
+      border-left: 2px solid var(--orange);
+      padding: 1.25rem 1.5rem;
+      margin: 1.2rem 0;
+    }
+
+    .callout p { margin: 0; font-size: 0.95rem; }
+
+    .section-rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 3rem 0;
+    }
+
+    .contact-block {
+      border: 1px solid var(--rule);
+      padding: 2rem;
+      margin-top: 1rem;
+    }
+
+    .contact-block .name {
+      font-size: 1.15rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+    }
+
+    .contact-block p { font-size: 0.95rem; margin-bottom: 0.3rem; }
+
+    a { color: var(--orange); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--white); }
+
+    /* FOOTER */
+    footer {
+      background: var(--blue-dark);
+      border-top: 1px solid var(--rule);
+      padding: 2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--muted); }
+
+    .footer-copy {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+    }
+
+    @media (max-width: 680px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      .main-wrap { grid-template-columns: 1fr; gap: 2rem; }
+      aside { position: static; }
+      .toc-list { display: none; }
+      .page-header::after { inset: 1rem; }
+      .corner--tl { top: 1rem; left: 1rem; }
+      .corner--tr { top: 1rem; right: 1rem; }
+      .corner--bl { bottom: 1rem; left: 1rem; }
+      .corner--br { bottom: 1rem; right: 1rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .footer-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">Cuzenti</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#focus">Focus</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div class="corner corner--tl"></div>
+    <div class="corner corner--tr"></div>
+    <div class="corner corner--bl"></div>
+    <div class="corner corner--br"></div>
+    <p class="page-eyebrow">Legal</p>
+    <h1 class="page-title">Privacy Policy</h1>
+    <p class="page-meta">Cuzenti LLC &nbsp;·&nbsp; Effective March 20, 2026 &nbsp;·&nbsp; Connecticut, USA</p>
+  </div>
+
+  <div class="main-wrap">
+
+    <aside>
+      <p class="toc-label">Contents</p>
+      <ul class="toc-list">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#information-collected">Information We Collect</a></li>
+        <li><a href="#how-we-use">How We Use It</a></li>
+        <li><a href="#sharing">Sharing Your Data</a></li>
+        <li><a href="#retention">Data Retention</a></li>
+        <li><a href="#security">Security</a></li>
+        <li><a href="#children">Children</a></li>
+        <li><a href="#your-rights">Your Rights</a></li>
+        <li><a href="#gdpr">GDPR (EU/UK)</a></li>
+        <li><a href="#ccpa">CCPA (California)</a></li>
+        <li><a href="#changes">Policy Changes</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+      <div class="toc-divider"></div>
+      <div class="toc-meta">
+        <strong>Effective Date</strong>
+        March 20, 2026
+        <br><br>
+        <strong>Operator</strong>
+        Cuzenti LLC<br>Connecticut, USA
+        <br><br>
+        <strong>Contact</strong>
+        <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="51222421213e23251132242b343f25387f323e3c">[email&#160;protected]</a>
+      </div>
+    </aside>
+
+    <div class="content">
+
+      <p class="intro-text">This policy explains how Cuzenti LLC collects, uses, and protects your information when you use the Cuzenti mobile app. We respect your privacy and are committed to being transparent about our practices.</p>
+
+      <section id="overview">
+        <h2>01 &nbsp;—&nbsp; Overview</h2>
+        <p class="section-heading">Who we are and what this covers.</p>
+        <p>Cuzenti is a mobile card game developed and operated by Cuzenti LLC, a company registered in Connecticut, USA. This Privacy Policy applies to the Cuzenti mobile application on iOS and Android, and governs how we handle personal data of players worldwide.</p>
+        <p>By using Cuzenti, you agree to the collection and use of information in accordance with this policy. If you do not agree, please discontinue use of the app.</p>
+      </section>
+
+      <section id="information-collected">
+        <h2>02 &nbsp;—&nbsp; Information We Collect</h2>
+        <p class="section-heading">What data we gather and why.</p>
+
+        <p><strong class="label">Account Information</strong></p>
+        <ul>
+          <li>Email address (when you register with email/password or link an account)</li>
+          <li>Display name or username you choose</li>
+          <li>Google account identifier (if you use Google Sign-In)</li>
+          <li>Apple account identifier (if you use Sign in with Apple)</li>
+        </ul>
+
+        <p><strong class="label">Gameplay Data</strong></p>
+        <ul>
+          <li>Game progress, scores, and quest completion</li>
+          <li>ELO rating and match history</li>
+          <li>In-app purchase history and subscription status</li>
+          <li>Session duration and frequency of play</li>
+        </ul>
+
+        <p><strong class="label">Technical Data</strong></p>
+        <ul>
+          <li>Device type and operating system version</li>
+          <li>App version</li>
+          <li>Crash logs and error reports</li>
+          <li>IP address (collected automatically by our infrastructure)</li>
+        </ul>
+
+        <p><strong class="label">Anonymous Data</strong></p>
+        <p>If you play without creating an account, we assign you an anonymous identifier to save your progress locally and in the cloud. This identifier is not linked to any personal information unless you later create an account.</p>
+      </section>
+
+      <section id="how-we-use">
+        <h2>03 &nbsp;—&nbsp; How We Use It</h2>
+        <p class="section-heading">The purposes for which we process your data.</p>
+        <ul>
+          <li>Provide, operate, and maintain the Cuzenti game</li>
+          <li>Save your progress and sync it across devices</li>
+          <li>Manage online matchmaking and ELO rankings</li>
+          <li>Process in-app purchases and subscriptions</li>
+          <li>Send important account and service notifications</li>
+          <li>Detect cheating, fraud, and abuse</li>
+          <li>Analyze aggregate gameplay patterns to improve the app</li>
+          <li>Display relevant advertisements (if you have not purchased an ad-free subscription)</li>
+          <li>Comply with legal obligations</li>
+        </ul>
+        <div class="callout">
+          <p>We do not sell your personal information to third parties. We do not use your data for purposes unrelated to providing and improving Cuzenti.</p>
+        </div>
+      </section>
+
+      <section id="sharing">
+        <h2>04 &nbsp;—&nbsp; Sharing Your Data</h2>
+        <p class="section-heading">Who else may receive your information.</p>
+        <ul>
+          <li><strong class="label">Google Firebase</strong> — backend infrastructure, authentication, and database (Google LLC, USA)</li>
+          <li><strong class="label">Google AdMob</strong> — advertising platform for players on the free tier (Google LLC, USA)</li>
+          <li><strong class="label">Google Play / Apple App Store</strong> — payment processing for purchases and subscriptions</li>
+          <li><strong class="label">Analytics providers</strong> — aggregate, anonymized usage analytics</li>
+        </ul>
+        <p>All third-party service providers are required to handle your data in accordance with applicable privacy laws and our data processing agreements. We do not share your personal data with advertisers directly.</p>
+        <p>We may disclose information if required by law, court order, or government authority, or to protect the rights, property, or safety of Cuzenti LLC, our users, or the public.</p>
+      </section>
+
+      <section id="retention">
+        <h2>05 &nbsp;—&nbsp; Data Retention</h2>
+        <p class="section-heading">How long we keep your information.</p>
+        <p>We retain your personal data for as long as your account is active or as needed to provide services. If you request deletion of your account, we will delete or anonymize your personal data within 30 days, except where we are required to retain it for legal or compliance purposes.</p>
+        <p>Aggregate, anonymized gameplay statistics may be retained indefinitely as they cannot be linked to you personally.</p>
+      </section>
+
+      <section id="security">
+        <h2>06 &nbsp;—&nbsp; Security</h2>
+        <p class="section-heading">How we protect your data.</p>
+        <p>We take reasonable technical and organizational measures to protect your information against unauthorized access, alteration, disclosure, or destruction. These include encrypted data transmission (TLS), secure cloud infrastructure via Google Firebase, and access controls limiting who can access production data.</p>
+        <p>No method of transmission over the internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your data, we cannot guarantee absolute security.</p>
+      </section>
+
+      <section id="children">
+        <h2>07 &nbsp;—&nbsp; Children</h2>
+        <p class="section-heading">Our policy regarding minors.</p>
+        <p>Cuzenti is not directed to children under the age of 13 (or under 16 in the European Union). We do not knowingly collect personal information from children under these ages. If you are a parent or guardian and believe your child has provided us with personal information, please contact us and we will delete it promptly.</p>
+      </section>
+
+      <section id="your-rights">
+        <h2>08 &nbsp;—&nbsp; Your Rights</h2>
+        <p class="section-heading">What you can request regarding your data.</p>
+        <ul>
+          <li>Access the personal data we hold about you</li>
+          <li>Request correction of inaccurate data</li>
+          <li>Request deletion of your account and associated data</li>
+          <li>Opt out of non-essential communications</li>
+          <li>Withdraw consent where processing is based on consent</li>
+        </ul>
+        <p>To exercise any of these rights, contact us at <a href="/cdn-cgi/l/email-protection#23505653534c515763405659464d574a0d404c4e"><span class="__cf_email__" data-cfemail="b1c2c4c1c1dec3c5f1d2c4cbd4dfc5d89fd2dedc">[email&#160;protected]</span></a>. We will respond within 30 days.</p>
+      </section>
+
+      <section id="gdpr">
+        <h2>09 &nbsp;—&nbsp; GDPR — EU &amp; UK Users</h2>
+        <p class="section-heading">Additional rights under European data protection law.</p>
+        <ul>
+          <li><strong class="label">Right to erasure</strong> ("right to be forgotten")</li>
+          <li><strong class="label">Right to data portability</strong> — receive your data in a structured, machine-readable format</li>
+          <li><strong class="label">Right to restriction</strong> of processing in certain circumstances</li>
+          <li><strong class="label">Right to object</strong> to processing based on legitimate interests</li>
+          <li><strong class="label">Right to lodge a complaint</strong> with your local data protection authority</li>
+        </ul>
+        <p>Our legal bases for processing include: performance of a contract (providing the game service), legitimate interests (security, fraud prevention, analytics), consent (marketing communications), and legal obligation.</p>
+        <p>As Cuzenti LLC is based in the United States, data is transferred internationally. We rely on Standard Contractual Clauses and the data processing terms of our service providers to ensure adequate protection for EU/UK data transfers.</p>
+      </section>
+
+      <section id="ccpa">
+        <h2>10 &nbsp;—&nbsp; CCPA — California Residents</h2>
+        <p class="section-heading">Your rights under California law.</p>
+        <ul>
+          <li>The right to know what personal information we collect, use, disclose, and sell</li>
+          <li>The right to delete personal information we have collected</li>
+          <li>The right to opt-out of the sale of personal information</li>
+          <li>The right to non-discrimination for exercising your CCPA rights</li>
+        </ul>
+        <div class="callout">
+          <p><strong class="label">We do not sell your personal information</strong> as defined under the CCPA. We do not share personal information with third parties for cross-context behavioral advertising without your consent.</p>
+        </div>
+        <p>To submit a verifiable consumer request, contact us at <a href="/cdn-cgi/l/email-protection#70030500001f02043013050a151e04195e131f1d"><span class="__cf_email__" data-cfemail="fc8f898c8c938e88bc9f898699928895d29f9391">[email&#160;protected]</span></a>.</p>
+      </section>
+
+      <section id="changes">
+        <h2>11 &nbsp;—&nbsp; Policy Changes</h2>
+        <p class="section-heading">How we handle updates to this policy.</p>
+        <p>We may update this Privacy Policy from time to time. When we do, we will revise the effective date above and, where the changes are material, notify you via in-app notification or email. Your continued use of Cuzenti after any changes constitutes your acceptance of the updated policy.</p>
+      </section>
+
+      <hr class="section-rule" />
+
+      <section id="contact">
+        <h2>12 &nbsp;—&nbsp; Contact Us</h2>
+        <p class="section-heading">Questions, requests, or concerns.</p>
+        <p>If you have questions about this Privacy Policy or your personal data, please reach out directly. We aim to respond to all privacy-related inquiries within 30 days.</p>
+        <div class="contact-block">
+          <p class="name">Cuzenti LLC</p>
+          <p>Connecticut, United States</p>
+          <p>Email: <a href="/cdn-cgi/l/email-protection#3b484e4b4b54494f7b584e41

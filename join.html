@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="apple-itunes-app" content="app-id=YOUR_APPLE_APP_ID">
+<title>Join my Cuzenti room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #0a0a0a;
+    color: #fff;
+    font-family: 'Tenor Sans', system-ui, -apple-system, sans-serif;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .logo {
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 2.5rem;
+  }
+  h1 {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.5rem 0;
+  }
+  .code {
+    font-family: ui-monospace, 'SF Mono', monospace;
+    font-size: clamp(2rem, 8vw, 3.2rem);
+    letter-spacing: 0.2em;
+    color: #fff;
+    margin: 1.5rem 0 2rem 0;
+    padding: 0.8rem 1.4rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    display: inline-block;
+  }
+  .sub {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    max-width: 30rem;
+    margin: 0 auto 2.5rem auto;
+  }
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
+    max-width: 22rem;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.95rem 1.4rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: inherit;
+    letter-spacing: 0.05em;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary {
+    background: #fff;
+    color: #0a0a0a;
+  }
+  .btn-primary:hover { background: rgba(255,255,255,0.92); }
+  .btn-secondary {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.12); }
+  .store-row {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 0.4rem;
+  }
+  .store-row .btn { flex: 1; }
+  .footer-note {
+    color: rgba(255,255,255,0.3);
+    font-size: 0.75rem;
+    margin-top: 3rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .error {
+    color: rgba(255,180,180,0.85);
+    font-size: 0.95rem;
+    max-width: 24rem;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo">Cuzenti</div>
+  <h1>You've been invited</h1>
+  <div id="code-display" class="code" hidden></div>
+  <div id="no-code" class="error" hidden>This link is missing a room code. Ask your friend to share the invite again.</div>
+  <p id="sub" class="sub">Tap below to open the game and join the room.</p>
+  <div class="actions">
+    <a id="open-app" class="btn btn-primary" href="#">Open in Cuzenti</a>
+    <a id="get-app-ios" class="btn btn-secondary" href="https://apps.apple.com/app/idYOUR_APPLE_APP_ID" hidden>Get Cuzenti — App Store</a>
+    <a id="get-app-android" class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=com.cuzenti.cuzenti" hidden>Get Cuzenti — Google Play</a>
+  </div>
+  <div class="footer-note">cuzenti.com</div>
+</div>
+
+<script>
+(function () {
+  // Extract the invite code. Two URL shapes both land here:
+  //   /join/ABC123      (Netlify rewrites this to /join.html?code=ABC123)
+  //   /join.html?code=ABC123  (direct query-string form)
+  function readCode() {
+    var params = new URLSearchParams(window.location.search);
+    var fromQuery = params.get('code');
+    if (fromQuery) return fromQuery.trim().toUpperCase();
+    // Belt-and-suspenders: if redirect rewriting is misconfigured, parse path
+    var m = window.location.pathname.match(/\/join\/([A-Za-z0-9]+)/);
+    return m ? m[1].toUpperCase() : '';
+  }
+
+  var code = readCode();
+  var openBtn = document.getElementById('open-app');
+  var sub = document.getElementById('sub');
+  var codeEl = document.getElementById('code-display');
+  var noCodeEl = document.getElementById('no-code');
+  var iosBtn = document.getElementById('get-app-ios');
+  var androidBtn = document.getElementById('get-app-android');
+
+  if (!code) {
+    codeEl.hidden = true;
+    noCodeEl.hidden = false;
+    openBtn.hidden = true;
+    sub.textContent = '';
+  } else {
+    codeEl.textContent = code;
+    codeEl.hidden = false;
+    openBtn.href = 'cuzenti://join/' + encodeURIComponent(code);
+  }
+
+  // Detect platform for the store-fallback row.
+  var ua = navigator.userAgent || '';
+  var isiOS = /iPad|iPhone|iPod/.test(ua) || (/Mac/.test(ua) && 'ontouchend' in document);
+  var isAndroid = /Android/.test(ua);
+  if (isiOS) iosBtn.hidden = false;
+  if (isAndroid) androidBtn.hidden = false;
+  if (!isiOS && !isAndroid) {
+    iosBtn.hidden = false;
+    androidBtn.hidden = false;
+  }
+
+  // Auto-attempt the app. If the Universal Link is registered with iOS, the
+  // app will intercept the initial https:// request and this page never
+  // renders. If the user reaches this page anyway (link not yet verified,
+  // or app not installed), tapping "Open in Cuzenti" runs the cuzenti://
+  // scheme as a last resort.
+  //
+  // We intentionally do NOT auto-redirect on load — that would loop forever
+  // when the app isn't installed (mobile browsers throw an error popup).
+  // The button click is the explicit user gesture.
+  openBtn.addEventListener('click', function (e) {
+    if (!code) { e.preventDefault(); return; }
+    // Allow the cuzenti:// navigation to proceed. After a short delay, if
+    // we're still on this page, the app probably isn't installed — surface
+    // the store buttons more prominently.
+    setTimeout(function () {
+      if (!document.hidden) {
+        sub.textContent = "Don't have Cuzenti yet? Grab it below.";
+      }
+    }, 1500);
+  });
+})();
+</script>
+</body>
+</html>

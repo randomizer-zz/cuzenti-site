@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["4MY9FG8QUH.com.cuzenti.cuzenti"],
+        "components": [
+          {
+            "/": "/join/*",
+            "comment": "Matches https://cuzenti.com/join/<invite-code> for room + league invites"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuzenti LLC — Mobile Entertainment</title>
+  <meta name="description" content="Cuzenti LLC is a Connecticut-based mobile entertainment company developing original interactive experiences for iOS and Android." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Tenor+Sans&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #00539B;
+      --blue-dark: #002f5c;
+      --blue-mid: #003f7a;
+      --orange: #F47D30;
+      --white: #FFFFFF;
+      --muted: rgba(255,255,255,0.5);
+      --rule: rgba(255,255,255,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--blue-dark);
+      color: var(--white);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 3rem;
+      background: rgba(0, 47, 92, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-logo {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 6rem;
+      background: radial-gradient(ellipse at 50% 30%, #0061b5 0%, #00539B 40%, #002f5c 100%);
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 2.5rem;
+      border: 1px solid var(--rule);
+      pointer-events: none;
+    }
+
+    .corner { position: absolute; width: 18px; height: 18px; }
+    .corner--tl { top: 2.5rem; left: 2.5rem; border-top: 2px solid var(--orange); border-left: 2px solid var(--orange); }
+    .corner--tr { top: 2.5rem; right: 2.5rem; border-top: 2px solid var(--orange); border-right: 2px solid var(--orange); }
+    .corner--bl { bottom: 2.5rem; left: 2.5rem; border-bottom: 2px solid var(--orange); border-left: 2px solid var(--orange); }
+    .corner--br { bottom: 2.5rem; right: 2.5rem; border-bottom: 2px solid var(--orange); border-right: 2px solid var(--orange); }
+
+    .hero-eyebrow {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 2rem;
+    }
+
+    .hero-title {
+      font-size: clamp(4rem, 12vw, 8rem);
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-sub {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3rem;
+    }
+
+    .hero-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--orange);
+      margin: 0 auto 3rem;
+    }
+
+    .hero-desc {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(255,255,255,0.8);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .hero-cta:hover {
+      border-color: var(--orange);
+      background: rgba(244,125,48,0.1);
+    }
+
+    /* SECTIONS */
+    section { padding: 7rem 2rem; }
+
+    .section-inner { max-width: 900px; margin: 0 auto; }
+
+    .section-label {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+
+    .section-body {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      font-weight: 300;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.75);
+      max-width: 660px;
+    }
+
+    .section-body p + p { margin-top: 1.25rem; }
+
+    /* ABOUT */
+    .about {
+      background: var(--blue-mid);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* PILLARS */
+    .pillars { background: var(--blue-dark); }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+
+    .pillar {
+      border: 1px solid var(--rule);
+      padding: 2rem;
+    }
+
+    .pillar-number {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.25em;
+      color: var(--orange);
+      margin-bottom: 1rem;
+    }
+
+    .pillar-title {
+      font-size: 1.15rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+
+    .pillar-body {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* CONTACT */
+    .contact {
+      background: var(--blue-mid);
+      border-top: 1px solid var(--rule);
+      text-align: center;
+    }
+
+    .contact .section-inner { display: flex; flex-direction: column; align-items: center; }
+    .contact .section-body { text-align: center; }
+
+    .contact-email {
+      display: inline-block;
+      margin-top: 2.5rem;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      font-style: italic;
+      color: var(--orange);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(244,125,48,0.3);
+      padding-bottom: 3px;
+      transition: color 0.3s, border-color 0.3s;
+    }
+
+    .contact-email:hover { color: var(--white); border-color: rgba(255,255,255,0.4); }
+
+    /* FOOTER */
+    footer {
+      background: var(--blue-dark);
+      border-top: 1px solid var(--rule);
+      padding: 2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .footer-copy {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .hero::after { inset: 1rem; }
+      .corner--tl { top: 1rem; left: 1rem; }
+      .corner--tr { top: 1rem; right: 1rem; }
+      .corner--bl { bottom: 1rem; left: 1rem; }
+      .corner--br { bottom: 1rem; right: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="#">Cuzenti</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#focus">Focus</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="corner corner--tl"></div>
+    <div class="corner corner--tr"></div>
+    <div class="corner corner--bl"></div>
+    <div class="corner corner--br"></div>
+    <p class="hero-eyebrow">Mobile Entertainment</p>
+    <h1 class="hero-title">Cuzenti</h1>
+    <p class="hero-sub">LLC &nbsp;·&nbsp; Est. 2026 &nbsp;·&nbsp; Connecticut</p>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">We design and develop original interactive entertainment experiences for mobile platforms.</p>
+    <a class="hero-cta" href="#about">Learn More</a>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="section-inner">
+      <p class="section-label">About Us</p>
+      <h2 class="section-title">A mobile entertainment studio built around original ideas.</h2>
+      <div class="section-body">
+        <p>Cuzenti LLC is a Connecticut-based limited liability company focused on the development and publishing of original mobile entertainment products for iOS and Android platforms.</p>
+        <p>We are currently in active development of our debut title — a mobile application built around an original gameplay concept. Our work is guided by a commitment to originality, craft, and the belief that the best interactive experiences are ones that feel genuinely new.</p>
+        <p>Cuzenti operates as an independent studio, with full ownership of its intellectual property and creative direction.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section class="pillars" id="focus">
+    <div class="section-inner">
+      <p class="section-label">What We Do</p>
+      <h2 class="section-title">Original entertainment, built for mobile.</h2>
+      <div class="pillars-grid">
+        <div class="pillar">
+          <p class="pillar-number">01</p>
+          <h3 class="pillar-title">Game Design</h3>
+          <p class="pillar-body">We develop original game mechanics and interactive systems designed specifically for the mobile form factor.</p>
+        </div>
+        <div class="pillar">
+          <p class="pillar-number">02</p>
+          <h3 class="pillar-title">iOS & Android</h3>
+          <p class="pillar-body">Our products are built cross-platform, targeting both the Apple App Store and Google Play at launch.</p>
+        </div>
+        <div class="pillar">
+          <p class="pillar-number">03</p>
+          <h3 class="pillar-title">Independent Studio</h3>
+          <p class="pillar-body">As an independent company, we retain full creative and commercial ownership of everything we build.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="section-inner">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-title">We'd love to hear from you.</h2>
+      <p class="section-body">For business inquiries, partnership opportunities, or general questions, reach us directly at the address below.</p>
+      <a class="contact-email" id="clink" href="#">contact&#64;cuzenti&#46;com</a>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-logo">Cuzenti LLC</span>
+    <a href="privacy-policy.html" style="font-family:'Tenor Sans',sans-serif;font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.5)'" onmouseout="this.style.color='rgba(255,255,255,0.25)'">Privacy Policy</a>
+    <span class="footer-copy">&copy; 2026 Cuzenti LLC &nbsp;·&nbsp; Connecticut &nbsp;·&nbsp; All rights reserved</span>
+  </footer>
+
+  <script>
+    (function(){
+      var a="contact",b="cuzenti",c="com";
+      var el=document.getElementById("clink");
+      el.href="mailto:"+a+"@"+b+"."+c;
+    })();
+  </script>
+
+</body>
+</html>

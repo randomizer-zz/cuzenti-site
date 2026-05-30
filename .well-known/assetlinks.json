@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.cuzenti.cuzenti",
+      "sha256_cert_fingerprints": [
+        "7B:52:62:73:7E:87:DE:FF:78:B3:38:B9:D2:98:6E:C9:5B:EA:9E:A3:2E:5C:1B:6D:2D:4B:43:53:F5:87:FC:C0"
+      ]
+    }
+  }
+]

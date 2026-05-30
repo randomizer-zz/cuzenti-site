@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delete Account — Cuzenti LLC</title>
+  <meta name="description" content="Request deletion of your Cuzenti account and associated data." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Tenor+Sans&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #00539B;
+      --blue-dark: #002f5c;
+      --blue-mid: #003f7a;
+      --orange: #F47D30;
+      --white: #FFFFFF;
+      --muted: rgba(255,255,255,0.5);
+      --rule: rgba(255,255,255,0.15);
+      --danger: #c0392b;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--blue-dark);
+      color: var(--white);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 3rem;
+      background: rgba(0, 47, 92, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-logo {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 10rem 2rem 5rem;
+      text-align: center;
+      background: radial-gradient(ellipse at 50% 0%, #0061b5 0%, #00539B 40%, #002f5c 100%);
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+    }
+
+    .page-header::after {
+      content: '';
+      position: absolute;
+      inset: 2.5rem;
+      border: 1px solid var(--rule);
+      pointer-events: none;
+    }
+
+    .corner { position: absolute; width: 14px; height: 14px; }
+    .corner--tl { top: 2.5rem; left: 2.5rem; border-top: 2px solid var(--orange); border-left: 2px solid var(--orange); }
+    .corner--tr { top: 2.5rem; right: 2.5rem; border-top: 2px solid var(--orange); border-right: 2px solid var(--orange); }
+    .corner--bl { bottom: 2.5rem; left: 2.5rem; border-bottom: 2px solid var(--orange); border-left: 2px solid var(--orange); }
+    .corner--br { bottom: 2.5rem; right: 2.5rem; border-bottom: 2px solid var(--orange); border-right: 2px solid var(--orange); }
+
+    .page-eyebrow {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1.5rem;
+    }
+
+    .page-title {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .page-meta {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* MAIN */
+    .main-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 5rem 2rem 7rem;
+    }
+
+    .intro-text {
+      font-size: 1.1rem;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.8;
+      padding-bottom: 2.5rem;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* STEPS */
+    .steps-label {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 2rem;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    .step:nth-child(1) { animation-delay: 0.1s; }
+    .step:nth-child(2) { animation-delay: 0.2s; }
+    .step:nth-child(3) { animation-delay: 0.3s; }
+    .step:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-number {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      color: var(--orange);
+      border: 1px solid var(--rule);
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-content h3 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+    }
+
+    .step-content p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .step-content a {
+      color: var(--orange);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .step-content a:hover { color: var(--white); }
+
+    .section-rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 3rem 0;
+    }
+
+    /* DATA TABLE */
+    .data-label {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1.5rem;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      font-weight: 300;
+    }
+
+    .data-table th {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--rule);
+      font-weight: 400;
+    }
+
+    .data-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+
+    .badge {
+      display: inline-block;
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.45rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+    }
+
+    .badge--deleted {
+      background: rgba(192, 57, 43, 0.2);
+      color: #e74c3c;
+      border: 1px solid rgba(192, 57, 43, 0.3);
+    }
+
+    .badge--retained {
+      background: rgba(244, 125, 48, 0.15);
+      color: var(--orange);
+      border: 1px solid rgba(244, 125, 48, 0.25);
+    }
+
+    /* CONTACT BLOCK */
+    .contact-block {
+      border: 1px solid var(--rule);
+      padding: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .contact-block .name {
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-block p {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.3rem;
+      line-height: 1.6;
+    }
+
+    .contact-block a {
+      color: var(--orange);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-block a:hover { color: var(--white); }
+
+    /* FOOTER */
+    footer {
+      background: var(--blue-dark);
+      border-top: 1px solid var(--rule);
+      padding: 2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--muted); }
+
+    .footer-copy {
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      .page-header::after { inset: 1rem; }
+      .corner--tl { top: 1rem; left: 1rem; }
+      .corner--tr { top: 1rem; right: 1rem; }
+      .corner--bl { bottom: 1rem; left: 1rem; }
+      .corner--br { bottom: 1rem; right: 1rem; }
+      .data-table { font-size: 0.82rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .footer-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">Cuzenti</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="privacy-policy.html">Privacy</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div class="corner corner--tl"></div>
+    <div class="corner corner--tr"></div>
+    <div class="corner corner--bl"></div>
+    <div class="corner corner--br"></div>
+    <p class="page-eyebrow">Account Management</p>
+    <h1 class="page-title">Delete Account</h1>
+    <p class="page-meta">Cuzenti LLC &nbsp;·&nbsp; Data Deletion Request</p>
+  </div>
+
+  <div class="main-wrap">
+
+    <p class="intro-text">You have the right to request deletion of your Cuzenti account and the personal data associated with it. Follow the steps below to submit your request. We will process all deletion requests within 30 days.</p>
+
+    <p class="steps-label">How to Request Deletion</p>
+
+    <div class="step">
+      <div class="step-number">01</div>
+      <div class="step-content">
+        <h3>Delete from within the app</h3>
+        <p>The fastest way to delete your account is directly in the Cuzenti app. Go to <strong style="color:rgba(255,255,255,0.8);">Settings → Account → Delete Account</strong>. This will immediately remove your account and queue your data for deletion.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">02</div>
+      <div class="step-content">
+        <h3>Or submit a request by email</h3>
+        <p>If you no longer have access to the app, send an email to <a href="mailto:support@cuzenti.com">support@cuzenti.com</a> with the subject line <strong style="color:rgba(255,255,255,0.8);">"Account Deletion Request"</strong> and include the email address associated with your account.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">03</div>
+      <div class="step-content">
+        <h3>We verify and confirm</h3>
+        <p>We may send a verification email to confirm your identity before processing the request. Once verified, we will confirm deletion and process it within 30 days.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">04</div>
+      <div class="step-content">
+        <h3>What happens after deletion</h3>
+        <p>Once deleted, your account cannot be recovered. Your username will become available again. See the table below for exactly what data is deleted and what, if anything, is retained.</p>
+      </div>
+    </div>
+
+    <hr class="section-rule" />
+
+    <p class="data-label">What Gets Deleted &amp; What Is Retained</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Data Type</th>
+          <th>Action</th>
+          <th>Retention Period</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Email address &amp; account credentials</td>
+          <td><span class="badge badge--deleted">Deleted</span></td>
+          <td>Immediately upon processing</td>
+        </tr>
+        <tr>
+          <td>Display name / username</td>
+          <td><span class="badge badge--deleted">Deleted</span></td>
+          <td>Immediately upon processing</td>
+        </tr>
+        <tr>
+          <td>Game progress &amp; quest data</td>
+          <td><span class="badge badge--deleted">Deleted</span></td>
+          <td>Within 30 days</td>
+        </tr>
+        <tr>
+          <td>Match history &amp; ELO rating</td>
+          <td><span class="badge badge--deleted">Deleted</span></td>
+          <td>Within 30 days</td>
+        </tr>
+        <tr>
+          <td>Purchase &amp; subscription records</td>
+          <td><span class="badge badge--retained">Retained</span></td>
+          <td>7 years (legal / tax obligation)</td>
+        </tr>
+        <tr>
+          <td>Anonymized aggregate gameplay statistics</td>
+          <td><span class="badge badge--retained">Retained</span></td>
+          <td>Indefinitely (not linked to you)</td>
+        </tr>
+        <tr>
+          <td>Crash logs &amp; error reports</td>
+          <td><span class="badge badge--deleted">Deleted</span></td>
+          <td>Within 30 days</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="section-rule" />
+
+    <p class="data-label">Questions?</p>
+    <div class="contact-block">
+      <p class="name">Cuzenti LLC</p>
+      <p>Connecticut, United States</p>
+      <p>Email: <a href="mailto:support@cuzenti.com">support@cuzenti.com</a></p>
+      <p style="margin-top:0.8rem; font-size:0.82rem;">We respond to all account and privacy requests within 30 days.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <span class="footer-logo">Cuzenti LLC</span>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="privacy-policy.html">Privacy Policy</a></li>
+      <li><a href="delete-account.html">Delete Account</a></li>
+    </ul>
+    <span class="footer-copy">&copy; 2026 Cuzenti LLC &nbsp;·&nbsp; All rights reserved</span>
+  </footer>
+
+</body>
+</html>
