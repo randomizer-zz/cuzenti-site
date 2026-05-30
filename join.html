@@ -3,7 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<meta name="apple-itunes-app" content="app-id=YOUR_APPLE_APP_ID">
+<!-- TODO(post-launch): add `<meta name="apple-itunes-app"
+     content="app-id=NUMERIC_APP_ID">` once the App Store listing is live.
+     Also replace the YOUR_APPLE_APP_ID token in the iOS store URL below. -->
 <title>Join my Cuzenti room</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -124,7 +126,10 @@
   <p id="sub" class="sub">Tap below to open the game and join the room.</p>
   <div class="actions">
     <a id="open-app" class="btn btn-primary" href="#">Open in Cuzenti</a>
-    <a id="get-app-ios" class="btn btn-secondary" href="https://apps.apple.com/app/idYOUR_APPLE_APP_ID" hidden>Get Cuzenti — App Store</a>
+    <!-- TODO(post-launch): replace YOUR_APPLE_APP_ID with the numeric App
+         Store ID once the listing is live. Until then we hide the iOS
+         install button rather than ship a broken link. -->
+    <a id="get-app-ios" class="btn btn-secondary" href="https://apps.apple.com/app/idYOUR_APPLE_APP_ID" hidden data-placeholder="true">Get Cuzenti — App Store</a>
     <a id="get-app-android" class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=com.cuzenti.cuzenti" hidden>Get Cuzenti — Google Play</a>
   </div>
   <div class="footer-note">cuzenti.com</div>
@@ -167,10 +172,14 @@
   var ua = navigator.userAgent || '';
   var isiOS = /iPad|iPhone|iPod/.test(ua) || (/Mac/.test(ua) && 'ontouchend' in document);
   var isAndroid = /Android/.test(ua);
-  if (isiOS) iosBtn.hidden = false;
+  // Only reveal store buttons when their link is real. The iOS button is
+  // tagged data-placeholder="true" until the App Store ID is known
+  // post-launch — keeping it hidden avoids shipping a 404.
+  var iosLinkReal = iosBtn.dataset.placeholder !== 'true';
+  if (isiOS && iosLinkReal) iosBtn.hidden = false;
   if (isAndroid) androidBtn.hidden = false;
   if (!isiOS && !isAndroid) {
-    iosBtn.hidden = false;
+    if (iosLinkReal) iosBtn.hidden = false;
     androidBtn.hidden = false;
   }
 
